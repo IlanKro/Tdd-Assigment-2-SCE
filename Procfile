@@ -1,2 +1,2 @@
-web: gunicorn nbafeature.wsgi
+web: gunicorn nbafeature:app
 
