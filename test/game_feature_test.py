@@ -1,53 +1,38 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 from src.game_feature import GameFeatureClass
 
 
 class GameFeatureTest(unittest.TestCase):
-    @patch('src.game_feature.GameFeatureClass')
-    def test_page(self, mock_game):
-        game = mock_game()
+    @patch('src.game_feature.requests.get')
+    def test_page(self, mock_get):
+        game_information = {'data': [{'id': 47179, 'date': '2019-01-30T00:00:00.000Z',
+                                      'home_team': {'id': 2, 'abbreviation': 'BOS', 'city': 'Boston',
+                                                    'conference': 'East', 'division': 'Atlantic',
+                                                    'full_name': 'Boston Celtics', 'name': 'Celtics'},
+                                      'home_team_score': 126, 'period': 4, 'postseason': False, 'season': 2018,
+                                      'status': 'Final', 'time': ' ',
+                                      'visitor_team': {'id': 4, 'abbreviation': 'CHA', 'city': 'Charlotte',
+                                                       'conference': 'East', 'division': 'Southeast',
+                                                       'full_name': 'Charlotte Hornets', 'name': 'Hornets'},
+                                      'visitor_team_score': 94}],
+                            'meta': {'total_pages': 48754, 'current_page': 1, 'next_page': 2, 'per_page': 1,
+                                     'total_count': 48754}}
 
-        game.data.return_value = {'data': [{'id': 47179, 'date': '2019-01-30T00:00:00.000Z',
-                                            'home_team': {'id': 2, 'abbreviation': 'BOS', 'city': 'Boston',
-                                                          'conference': 'East', 'division': 'Atlantic',
-                                                          'full_name': 'Boston Celtics', 'name': 'Celtics'},
-                                            'home_team_score': 126, 'period': 4, 'postseason': False, 'season': 2018,
-                                            'status': 'Final', 'time': ' ',
-                                            'visitor_team': {'id': 4, 'abbreviation': 'CHA', 'city': 'Charlotte',
-                                                             'conference': 'East', 'division': 'Southeast',
-                                                             'full_name': 'Charlotte Hornets', 'name': 'Hornets'},
-                                            'visitor_team_score': 94}],
-                                  'meta': {'total_pages': 48754, 'current_page': 1, 'next_page': 2, 'per_page': 1,
-                                           'total_count': 48754}}
-
-        game.twentysixteen.season.return_value = {'data': [{'id': 32809, 'date': '2016-11-17T00:00:00.000Z',
-                                                            'home_team': {'id': 29, 'abbreviation': 'UTA',
-                                                                          'city': 'Utah', 'conference': 'West',
-                                                                          'division': 'Northwest',
-                                                                          'full_name': 'Utah Jazz', 'name': 'Jazz'},
-                                                            'home_team_score': 77, 'period': 4, 'postseason': False,
-                                                            'season': 2016, 'status': 'Final', 'time': ' ',
-                                                            'visitor_team': {'id': 5, 'abbreviation': 'CHI',
-                                                                             'city': 'Chicago', 'conference': 'East',
-                                                                             'division': 'Central',
-                                                                             'full_name': 'Chicago Bulls',
-                                                                             'name': 'Bulls'},
-                                                            'visitor_team_score': 85}],
-                                                  'meta': {'total_pages': 1309, 'current_page': 1, 'next_page': 2,
-                                                           'per_page': 1, 'total_count': 1309}}
+        mock_get.return_value = Mock(ok=True)
+        mock_get.return_value.json.return_value = game_information
 
         # assume
         stub1 = 'id'
-        stub2 = '?seasons[]=2016'
-        stub3 = '?postseason[]=False'
+        stub2 = 'date'
+        stub3 = 'postseason'
         stub4 = 'home_team_score'
         stub5 = 'visitor_team_score'
 
         # expected
         expected_id = 47179
         expected_id_type = int
-        expected_game_date_2016 = '2016-11-17'
+        expected_game_date_2016 = '2019-01-30'
         expected_game_time_2016 = '00:00:00.000Z'
         expected_game_dt_type = list
         expected_home_team_score = 126
