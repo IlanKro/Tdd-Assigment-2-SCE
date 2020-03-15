@@ -1,22 +1,29 @@
 import requests
 
 
-def get_info(url, params=''):
-
-    response = requests.get(url=url, params=params)
-    print(response.json())
+def get_info(url):
+    response = requests.get(url=url)
     return response.json()
 
 
 class GameFeatureClass:
 
     @staticmethod
-    def CheckID(stub_id):
-        params = {
-            'page': 1,
-            'per_page': 1,
-        }
-        return get_info('https://www.balldontlie.io/api/v1/games', params)['data'][0][stub_id]
+    def CheckID(param):
+        return get_info('https://www.balldontlie.io/api/v1/games')['data'][0][param]
 
+    @staticmethod
+    def SeasonsInfo(param):
+        return get_info('https://www.balldontlie.io/api/v1/games')['data'][0][param]
 
-# GameFeatureClass.get_info()
+    @staticmethod
+    def PostSeasonInfo(param):
+        url = 'https://www.balldontlie.io/api/v1/games'
+        info = get_info(url)['data'][0]
+        if info[param] is True:
+            return True
+        return False
+
+    @staticmethod
+    def ScoreInfo(param):
+        return get_info('https://www.balldontlie.io/api/v1/games')['data'][0][param]
