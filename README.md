@@ -17,7 +17,7 @@ You need to run the test files while the source files are at the same directory 
 The tests in the project test the 2 features of the API we choose for this project they test mainly simple functionality of getting the right data from the API.
 For example one of the tests is testing a function that translate imperial units of the NBA player measurements to metric, the test checks if the conversion is right.
 
-#Testing Technique
+# Testing Technique
 Since the API response can change in any given time, we used Mocking to substitutes and imitates the real object to eliminate any failures within our test suite.
 Furthermore,  we used patch() as a decorator to provide a scope in which we will mock our target object.
 
