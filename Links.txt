@@ -1,1 +1,3 @@
 https://www.balldontlie.io/
+https://semaphoreci.com/product
+https://gitlab.com/pycqa/flake8
