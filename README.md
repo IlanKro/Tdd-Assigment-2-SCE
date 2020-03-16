@@ -13,10 +13,11 @@ Request 2.23.
 Download the folders, run the testing files in a machine that can run python and has the appropriate libraries.
 #Running the tests
 You need to run the test files while the source files are at the same directory as they are in the project.
-# Brief explanition about the tests
+# Brief explanation about the tests
 The tests in the project test the 2 features of the API we choose for this project they test mainly simple functionality of getting the right data from the API.
 For example one of the tests is testing a function that translate imperial units of the NBA player measurements to metric, the test checks if the conversion is right.
-#Testing Technique:
+
+#Testing Technique
 Since the API response can change in any given time, we used Mocking to substitutes and imitates the real object to eliminate any failures within our test suite.
 Furthermore,  we used patch() as a decorator to provide a scope in which we will mock our target object.
 
@@ -30,14 +31,18 @@ After trying flake8 multiple times you’re realizing that some set of commands 
 # Versioning
 The Versioning management is delegated to Github the numbering is mainly a progress check for how big are the changes.
 # Authors
-•	Sharon Yaroshetsky 
-•	Ilan Kroter 
-•	Noy Nir 
+	•Sharon Yaroshetsky 
+
+	•Ilan Kroter 
+
+	•Noy Nir 
 Students of Sami Shamoon Collegue of Engineering in Ashdod.
 # License
 This project is open source, you might freely use anything on it if you see fit.
 # Acknowledgments
-•	CoronaVirus for fucking us up with the team meeting.
-•	Danny Park(ynnadkrap)- for using his NBA API.
-•	Yaniv Ben Zvi- the project mentor.
+	•CoronaVirus for fucking us up with the team meeting.
+
+	•Danny Park(ynnadkrap)- for using his NBA API.
+
+	•Yaniv Ben Zvi- the project mentor.
 
