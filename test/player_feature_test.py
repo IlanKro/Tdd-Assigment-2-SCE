@@ -23,10 +23,6 @@ class PlayerFeatureTest(unittest.TestCase):
         MockPlayer.return_value.json.return_value = player
         player2 = PlayerFeatureClass('id', 237)
         player3 = PlayerFeatureClass('name', 'LeBron')
-        # assume
-        stub1 = 'weight_pounds'
-        stub2 = 'height_feet'
-        stub3= 'height_inches'
 
         # expected
         expected_id = 237
@@ -34,14 +30,14 @@ class PlayerFeatureTest(unittest.TestCase):
         expected_first_name = 'LeBron'
         expected_last_name = 'James'
         expected_name_dt_type = list
-        expected_weight_in_kilo = 113.4
-        expected_height_in_meters = 1.83
+        expected_weight_in_kilo = 113.39
+        expected_height_in_meters = 2.06
+
         # action
         result1 = player2.CheckID()
         result2 = player2.CheckName()
-        result3 = player2.MetricUnits(stub1)
-        result4 = player2.MetricUnits(stub2)
-        result5 = player2.MetricUnits(stub3)
+        result3 = player2.MetricUnits()
+        result4 = player2.MetricUnits()
 
         # assert
         self.assertEqual(result1[0], expected_id)  # testing if the id is equal to the mock
@@ -49,9 +45,10 @@ class PlayerFeatureTest(unittest.TestCase):
         self.assertEqual(result2[0][0], expected_first_name)  # testing if the name is the same.
         self.assertEqual(result2[0][1], expected_last_name)  # testing if the last name is the same.
         self.assertIsInstance(result2, expected_name_dt_type)  # testing if the give name is a list of names.
-        self.assertAlmostEqual(result3['LeBron James'], expected_weight_in_kilo, places=3)  # testing if the convertion is right.
-        self.assertAlmostEqual(result4['LeBron James'], expected_height_in_meters, places=3)  # testing if the convertion is right.
-        self.assertAlmostEqual(result5['LeBron James'], expected_height_in_meters,places=3)  # testing if the convertion is right.
+        self.assertAlmostEqual(result3['LeBron James']['weight'], expected_weight_in_kilo,
+                               delta=0.1)  # testing if the convertion is right.
+        self.assertAlmostEqual(result4['LeBron James']['height'], expected_height_in_meters,
+                               delta=0.1)  # testing if the convertion is right.
         self.assertEqual(player2.player, player3.player)
 
     if __name__ == '__main__':

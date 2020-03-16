@@ -18,10 +18,12 @@ def get_info(url, params=''):
         return
     return response
 
+
 class PlayerFeatureClass:
     """
     Makes an object of players from the NBA API
     """
+
     def __init__(self, search_type, search_param):
         """
         Gets a NBA player list according to a criteria from the api.
@@ -52,19 +54,24 @@ class PlayerFeatureClass:
         """
         return [[item['first_name'], item['last_name']] for item in self.player]
 
-    def MetricUnits(self, param):
+    def MetricUnits(self):
         """
         Translate a criteria in the player statics into metric.
-        :param param: weight_pounds or height_feet or 'height_inches'
-        to translate into kg for the first one or meters for the later 2
         :return: A dictionary of translated units with player names as key.
         """
         imperial_to_metric = {'weight_pounds': 0.45359237, 'height_feet': 0.3048, 'height_inches': 0.0254}
         metric = {}
         for item in self.player:
-            if item[param] is not None:
-                metric[item['first_name'] + ' ' + item['last_name']] = (
-                    round(imperial_to_metric[param] * item[param], 2))
+            player_data = {}
+            if item['weight_pounds'] is not None:
+                player_data['weight'] = imperial_to_metric['weight_pounds'] * item['weight_pounds']
             else:
-                metric[item['first_name'] + ' ' + item['last_name']] = None
+                player_data['weight'] = None
+            if item['height_feet'] and item['height_inches'] is not None:
+                player_data['height'] = imperial_to_metric['height_feet'] * item['height_feet'] + \
+                                        imperial_to_metric['height_inches'] * item['height_inches']
+            else:
+                player_data['height'] = None
+
+            metric[item['first_name'] + ' ' + item['last_name']] = player_data
         return metric
