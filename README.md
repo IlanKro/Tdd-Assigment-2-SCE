@@ -31,18 +31,14 @@ After trying flake8 multiple times you’re realizing that some set of commands 
 # Versioning
 The Versioning management is delegated to Github the numbering is mainly a progress check for how big are the changes.
 # Authors
-	•Sharon Yaroshetsky 
-
-	•Ilan Kroter 
-
+	•Sharon Yaroshetsky
+	•Ilan Kroter
 	•Noy Nir 
 Students of Sami Shamoon Collegue of Engineering in Ashdod.
 # License
 This project is open source, you might freely use anything on it if you see fit.
 # Acknowledgments
 	•CoronaVirus for fucking us up with the team meeting.
-
 	•Danny Park(ynnadkrap)- for using his NBA API.
-
 	•Yaniv Ben Zvi- the project mentor.
 
