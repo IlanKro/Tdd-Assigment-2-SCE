@@ -19,9 +19,9 @@ def get_info(url, params=''):
     return response
 
 class PlayerFeatureClass:
-"""
-Makes an object of players from the NBA API
-"""
+    """
+    Makes an object of players from the NBA API
+    """
     def __init__(self, search_type, search_param):
         """
         Gets a NBA player list according to a criteria from the api.
