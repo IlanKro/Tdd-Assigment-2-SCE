@@ -10,7 +10,7 @@ class PlayerFeatureTest(unittest.TestCase):
         Testing a few elements from the player feature
         :param mock_player: An input from patch.
         """
-        player = {'id': 237, 'first_name': 'LeBron', 'height_feet': 6, 'height_inches': 8,
+        player =  {'id': 237, 'first_name': 'LeBron', 'height_feet': 6, 'height_inches': 8,
                   'last_name': 'James', 'position': 'F', 'team': {'id': 14, 'abbreviation': 'LAL',
                                                                   'city': 'Los Angeles', 'conference': 'West',
                                                                   'division': 'Pacific',
