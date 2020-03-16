@@ -5,7 +5,7 @@ import requests
 
 def get_info(url, params=''):
     """
-    get an object or a list of objects from an API.
+    Get an object or a list of objects from an API, if there's an error or it's not found it returns None.
     :param url: A url who returns a json object.
     :param params: search specific pages in the API
     :return: an object or a list of objects from an API.
@@ -15,7 +15,7 @@ def get_info(url, params=''):
     try:
         response = requests.get(url=url, params=params).json()
     except JSONDecodeError:
-        return
+        return None
     return response
 
 
@@ -36,7 +36,9 @@ class PlayerFeatureClass:
             if None in self.player:
                 self.player = []
         elif search_type == 'name':
-            self.player = get_info('https://www.balldontlie.io/api/v1/players/?search=' + search_param)['data']
+            self.player = get_info('https://www.balldontlie.io/api/v1/players/?search=' + search_param)
+            if self.player is not None:
+                self.player = self.player['data']
         else:
             self.player = None
 

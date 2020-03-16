@@ -21,14 +21,14 @@ class PlayerFeatureTest(unittest.TestCase):
 
         MockPlayer.return_value = Mock(ok=True)
         MockPlayer.return_value.json.return_value = player
-        player2 = PlayerFeatureClass('id', 237)
-        player3 = PlayerFeatureClass('name', 'LeBron')
+        player2 = PlayerFeatureClass('id', player['data'][0]['id'])
+        player3 = PlayerFeatureClass('name', player['data'][0]['first_name'])
 
         # expected
-        expected_id = 237
+        expected_id = player['data'][0]['id']
         expected_id_type = list
-        expected_first_name = 'LeBron'
-        expected_last_name = 'James'
+        expected_first_name = player['data'][0]['first_name']
+        expected_last_name = player['data'][0]['last_name']
         expected_name_dt_type = list
         expected_weight_in_kilo = 113.39
         expected_height_in_meters = 2.06
