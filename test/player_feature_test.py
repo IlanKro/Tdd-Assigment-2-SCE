@@ -19,6 +19,7 @@ class PlayerFeatureTest(unittest.TestCase):
 
         mock_player.return_value = Mock(ok=True)
         mock_player.return_value.json.return_value = player  # setting the API to only return this mock object.
+
         player2 = PlayerFeatureClass('id', player['id'])
         # expected
         expected_id = player['id']
