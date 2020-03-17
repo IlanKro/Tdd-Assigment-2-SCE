@@ -11,7 +11,7 @@ blocks:
         - name: nbafeature
       env_vars:
         - name: nbafeature
-          value: 'https://git.heroku.com/semaphore-nbafeature.git'
+          value: 'https://git.heroku.com/nbafeature.git'
       jobs:
         - name: Push code
           commands:
@@ -20,4 +20,5 @@ blocks:
             - chmod 600 ~/.ssh/id_rsa_semaphore_heroku
             - ssh-add ~/.ssh/id_rsa_semaphore_heroku
             - 'git config --global url.ssh://git@heroku.com/.insteadOf https://git.heroku.com/'
+            - git remote add heroku $HEROKU_REMOTE
             - 'git push heroku -f $SEMAPHORE_GIT_BRANCH:master'
